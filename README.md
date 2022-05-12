@@ -30,7 +30,7 @@ Em um **order book(livro de ofertas)**, há muitas regras envolvidas no seu func
 
 ## Arquitetura
 
-[Order Book - view](ADRs/ADR001-monolith-architecture.md)
+[Order Book - view](docs/order-book-view.md)
 
 ![](docs/images/architecture_15.png)
 
