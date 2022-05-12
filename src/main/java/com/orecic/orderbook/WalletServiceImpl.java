@@ -17,8 +17,10 @@ public class WalletServiceImpl implements WalletService {
 
         if (orderType.equals("ask")) {
             wallet.setBalance(wallet.getBalance().add(newBalance));
+            walletRepository.save(wallet);
         } else {
             wallet.setBalance(wallet.getBalance().subtract(newBalance));
+            walletRepository.save(wallet);
         }
     }
 }

@@ -18,11 +18,14 @@ public class OrderEntity implements Comparable<OrderEntity> {
 
     private String user;
 
+    private String status;
+
     public OrderEntity(int qty, BigDecimal price, String orderType, String user) {
         this.qty = qty;
         this.price = price;
         this.orderType = orderType;
         this.user = user;
+        this.status = "PENDING";
     }
 
     public OrderEntity(){}
@@ -65,6 +68,14 @@ public class OrderEntity implements Comparable<OrderEntity> {
 
     public String getUser() {
         return user;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
