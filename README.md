@@ -51,4 +51,4 @@ Contém o racional para escolha da arquitetura e componentes pertinentes.
 
 
 ## Como executar local
-[Instruções para execução](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
+[Instruções para execução](https://github.com/monteirocicero/order-book/blob/main/docs/how-to-run-the-application.md)
