@@ -30,20 +30,24 @@ Em um **order book(livro de ofertas)**, há muitas regras envolvidas no seu func
 
 ## Arquitetura
 
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+[Order Book - view](ADRs/ADR001-monolith-architecture.md)
 
-> Follow your heart.
+![](docs/images/architecture_15.png)
+
 
 ## ADR (Architectural Decision Record)
 Contém o racional para escolha da arquitetura e componentes pertinentes.
 
-* ADR 001 - [Arquitetura Monolítica](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
+* ADR 001 - [Monolith Style](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
+* ADR 002 - [Batch Matching](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
+* ADR 003 - [Leader/Follower Database](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
+
 
 ## Backlog
 * Permitir ordem de compra a preço de mercado(imediata), compra com proteção e compra com stop/loss.
 * Disponibilizar execução de ordens parcias.
 * Permitir aluguel de vibranium.
-* Possibilitar negociar opções de vibranium.
+* Possibilitar negociar opções de vibranium.Service
 
 
 ## Como executar local
