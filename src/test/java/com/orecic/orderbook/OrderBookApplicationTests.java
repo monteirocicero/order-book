@@ -2,7 +2,7 @@ package com.orecic.orderbook;
 
 import com.orecic.orderbook.domain.entities.OrderEntity;
 import com.orecic.orderbook.domain.entities.WalletEntity;
-import com.orecic.orderbook.domain.enums.OrderType;
+import com.orecic.orderbook.domain.enums.OrderTypeEnum;
 import com.orecic.orderbook.domain.repositories.OrderBookRepository;
 import com.orecic.orderbook.domain.repositories.WalletRepository;
 import com.orecic.orderbook.domain.services.OrderSchedule;
@@ -149,17 +149,17 @@ class OrderBookApplicationTests {
     }
 
     private void prepareTrade(BigDecimal askPrice, BigDecimal bidPrice) {
-        orderBookRepository.save(new OrderEntity(10, askPrice, OrderType.ASK.name(), "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, bidPrice, OrderType.BID.name(), "alice", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, askPrice, OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, bidPrice, OrderTypeEnum.BID, "alice", LocalDateTime.now()));
 
         walletRepository.save(new WalletEntity(new BigDecimal(500.0), "bob"));
         walletRepository.save(new WalletEntity(new BigDecimal(500.0), "alice"));
     }
 
     private void prepareTradeWithQueue() {
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.ASK.name(), "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.BID.name(), "alice", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.BID.name(), "maria", LocalDateTime.now().minusDays(1)));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "alice", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "maria", LocalDateTime.now().minusDays(1)));
 
         walletRepository.save(new WalletEntity(new BigDecimal(500.0), "bob"));
         walletRepository.save(new WalletEntity(new BigDecimal(500.0), "alice"));
@@ -167,9 +167,9 @@ class OrderBookApplicationTests {
     }
 
     private void prepareTradeWithMoreThanOneAsksAndSingleBid() {
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.ASK.name(), "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.ASK.name(), "john", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.BID.name(), "maria", LocalDateTime.now().minusDays(1)));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "john", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "maria", LocalDateTime.now().minusDays(1)));
 
         walletRepository.save(new WalletEntity(new BigDecimal(400.0), "bob"));
         walletRepository.save(new WalletEntity(new BigDecimal(500.2), "john"));
@@ -177,16 +177,14 @@ class OrderBookApplicationTests {
     }
 
     private void prepareTradeWithMoreThanOneAsksAndBids() {
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.ASK.name(), "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.ASK.name(), "john", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.BID.name(), "maria", LocalDateTime.now().minusDays(1)));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderType.BID.name(), "alice", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "john", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "maria", LocalDateTime.now().minusDays(1)));
+        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "alice", LocalDateTime.now()));
 
         walletRepository.save(new WalletEntity(new BigDecimal(400.0), "bob"));
         walletRepository.save(new WalletEntity(new BigDecimal(500.2), "john"));
         walletRepository.save(new WalletEntity(new BigDecimal(600.0), "maria"));
         walletRepository.save(new WalletEntity(new BigDecimal(600.0), "alice"));
     }
-
-
 }
