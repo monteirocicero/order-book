@@ -1,4 +1,6 @@
-package com.orecic.orderbook;
+package com.orecic.orderbook.domain;
+
+import com.orecic.orderbook.domain.Order;
 
 import java.math.BigDecimal;
 import java.util.*;

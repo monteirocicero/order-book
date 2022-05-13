@@ -1,10 +1,14 @@
-package com.orecic.orderbook;
+package com.orecic.orderbook.domain.entities;
+
+import com.orecic.orderbook.domain.enums.OrderStatusEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 public class OrderEntity implements Comparable<OrderEntity> {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,12 +24,16 @@ public class OrderEntity implements Comparable<OrderEntity> {
 
     private String status;
 
-    public OrderEntity(int qty, BigDecimal price, String orderType, String user) {
+    @Column(name = "created_at")
+    private LocalDateTime creationDate;
+
+    public OrderEntity(int qty, BigDecimal price, String orderType, String user, LocalDateTime now) {
         this.qty = qty;
         this.price = price;
         this.orderType = orderType;
         this.user = user;
-        this.status = "PENDING";
+        this.status = OrderStatusEnum.OPEN.name();
+        this.creationDate = now;
     }
 
     public OrderEntity(){}
@@ -76,6 +84,14 @@ public class OrderEntity implements Comparable<OrderEntity> {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override

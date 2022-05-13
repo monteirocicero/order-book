@@ -1,4 +1,4 @@
-package com.orecic.orderbook;
+package com.orecic.orderbook.domain.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

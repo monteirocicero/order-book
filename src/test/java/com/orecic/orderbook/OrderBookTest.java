@@ -1,5 +1,8 @@
 package com.orecic.orderbook;
 
+import com.orecic.orderbook.domain.Order;
+import com.orecic.orderbook.domain.OrderBook;
+import com.orecic.orderbook.domain.Wallet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
