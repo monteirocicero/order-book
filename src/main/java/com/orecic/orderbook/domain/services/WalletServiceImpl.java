@@ -16,11 +16,12 @@ public class WalletServiceImpl implements WalletService {
     public void update(WalletUpdate walletUpdate) {
         WalletEntity wallet = walletRepository.findByUser(walletUpdate.getUser());
 
-        if (OrderTypeEnum.ASK.equals(walletUpdate.getBalanceType())) {
+        if (OrderTypeEnum.ASK.name().equals(walletUpdate.getBalanceType())) {
             wallet.setBalance(wallet.getBalance().add(walletUpdate.getAmount()));
-
+            wallet.setVibraniumOwned(wallet.getVibraniumOwned() - walletUpdate.getQtyVibranium());
         } else {
             wallet.setBalance(wallet.getBalance().subtract(walletUpdate.getAmount()));
+            wallet.setVibraniumOwned(wallet.getVibraniumOwned() + walletUpdate.getQtyVibranium());
         }
         walletRepository.save(wallet);
     }

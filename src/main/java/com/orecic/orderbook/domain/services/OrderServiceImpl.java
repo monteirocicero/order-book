@@ -17,11 +17,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void update(OrderEntity bidOrder, OrderEntity askOrder) {
-        walletService.update(new WalletUpdate(bidOrder.getUser(), bidOrder.getTotalOrder(), bidOrder.getOrderType()));
-        walletService.update(new WalletUpdate(askOrder.getUser(), askOrder.getTotalOrder(), askOrder.getOrderType()));
+        walletService.update(new WalletUpdate(bidOrder.getUser(), bidOrder.getTotalOrder(), bidOrder.getOrderType(), bidOrder.getQty()));
+        walletService.update(new WalletUpdate(askOrder.getUser(), askOrder.getTotalOrder(), askOrder.getOrderType(), askOrder.getQty()));
 
-        bidOrder.setStatus(OrderStatusEnum.EXECUTED);
-        askOrder.setStatus(OrderStatusEnum.EXECUTED);
+        bidOrder.setStatus(OrderStatusEnum.EXECUTED.name());
+        askOrder.setStatus(OrderStatusEnum.EXECUTED.name());
 
         orderBookRepository.save(bidOrder);
         orderBookRepository.save(askOrder);

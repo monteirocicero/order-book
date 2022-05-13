@@ -44,11 +44,14 @@ class OrderBookApplicationTests {
         // then
         Assertions.assertEquals(2, executedOrders.size());
 
-        BigDecimal aliceBalance = walletRepository.findByUser("alice").getBalance();
-        BigDecimal bobBalance = walletRepository.findByUser("bob").getBalance();
+        WalletEntity alice = walletRepository.findByUser("alice");
+        WalletEntity bob = walletRepository.findByUser("bob");
 
-        assertThat(new BigDecimal(150.0), Matchers.comparesEqualTo(aliceBalance) );
-        assertThat(new BigDecimal(850.0), Matchers.comparesEqualTo(bobBalance) );
+        assertThat(new BigDecimal(150.0), Matchers.comparesEqualTo(alice.getBalance()));
+        assertThat(new BigDecimal(850.0), Matchers.comparesEqualTo(bob.getBalance()));
+
+        Assertions.assertEquals(10L, alice.getVibraniumOwned());
+        Assertions.assertEquals(10L, bob.getVibraniumOwned());
     }
 
     @Test
@@ -62,11 +65,14 @@ class OrderBookApplicationTests {
         // then
         Assertions.assertEquals(0, executedOrders.size());
 
-        BigDecimal aliceBalance = walletRepository.findByUser("alice").getBalance();
-        BigDecimal bobBalance = walletRepository.findByUser("bob").getBalance();
+        WalletEntity alice = walletRepository.findByUser("alice");
+        WalletEntity bob = walletRepository.findByUser("bob");
 
-        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(aliceBalance) );
-        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(bobBalance) );
+        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(alice.getBalance()));
+        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(bob.getBalance()));
+
+        Assertions.assertEquals(0L, alice.getVibraniumOwned());
+        Assertions.assertEquals(20L, bob.getVibraniumOwned());
 
     }
 
@@ -81,11 +87,14 @@ class OrderBookApplicationTests {
         // then
         Assertions.assertEquals(0, executedOrders.size());
 
-        BigDecimal aliceBalance = walletRepository.findByUser("alice").getBalance();
-        BigDecimal bobBalance = walletRepository.findByUser("bob").getBalance();
+        WalletEntity alice = walletRepository.findByUser("alice");
+        WalletEntity bob = walletRepository.findByUser("bob");
 
-        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(aliceBalance) );
-        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(bobBalance) );
+        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(alice.getBalance()));
+        assertThat(new BigDecimal(500.0), Matchers.comparesEqualTo(bob.getBalance()));
+
+        Assertions.assertEquals(0L, alice.getVibraniumOwned());
+        Assertions.assertEquals(20L, bob.getVibraniumOwned());
 
     }
 
@@ -100,11 +109,14 @@ class OrderBookApplicationTests {
         // then
         Assertions.assertEquals(2, executedOrders.size());
 
-        BigDecimal aliceBalance = walletRepository.findByUser("maria").getBalance();
-        BigDecimal bobBalance = walletRepository.findByUser("bob").getBalance();
+        WalletEntity maria = walletRepository.findByUser("maria");
+        WalletEntity bob = walletRepository.findByUser("bob");
 
-        assertThat(new BigDecimal(150.0), Matchers.comparesEqualTo(aliceBalance));
-        assertThat(new BigDecimal(850.0), Matchers.comparesEqualTo(bobBalance));
+        assertThat(new BigDecimal(150.0), Matchers.comparesEqualTo(maria.getBalance()));
+        assertThat(new BigDecimal(850.0), Matchers.comparesEqualTo(bob.getBalance()));
+
+        Assertions.assertEquals(10L, maria.getVibraniumOwned());
+        Assertions.assertEquals(10L, bob.getVibraniumOwned());
     }
 
     @Test
@@ -118,16 +130,22 @@ class OrderBookApplicationTests {
         // then
         Assertions.assertEquals(4, executedOrders.size());
 
-        BigDecimal mariaBalance = walletRepository.findByUser("maria").getBalance();
-        BigDecimal bobBalance = walletRepository.findByUser("bob").getBalance();
-        BigDecimal johnBalance = walletRepository.findByUser("john").getBalance();
-        BigDecimal aliceBalance = walletRepository.findByUser("alice").getBalance();
+        WalletEntity maria = walletRepository.findByUser("maria");
+        WalletEntity bob = walletRepository.findByUser("bob");
+        WalletEntity john = walletRepository.findByUser("john");
+        WalletEntity alice = walletRepository.findByUser("alice");
 
 
-        assertThat(new BigDecimal(250.00).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(mariaBalance));
-        assertThat(new BigDecimal(750.0).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(bobBalance));
-        assertThat(new BigDecimal(850.2).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(johnBalance));
-        assertThat(new BigDecimal(250.0).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(aliceBalance));
+        assertThat(new BigDecimal(250.00).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(maria.getBalance()));
+        assertThat(new BigDecimal(750.0).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(bob.getBalance()));
+        assertThat(new BigDecimal(850.2).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(john.getBalance()));
+        assertThat(new BigDecimal(250.0).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(alice.getBalance()));
+
+
+        Assertions.assertEquals(17L, alice.getVibraniumOwned());
+        Assertions.assertEquals(11L, maria.getVibraniumOwned());
+        Assertions.assertEquals(22L, john.getVibraniumOwned());
+        Assertions.assertEquals(10L, bob.getVibraniumOwned());
     }
 
     @Test
@@ -140,51 +158,50 @@ class OrderBookApplicationTests {
 
         // then
         Assertions.assertEquals(2, executedOrders.size());
+        WalletEntity maria = walletRepository.findByUser("maria");
 
-        BigDecimal mariaBalance = walletRepository.findByUser("maria").getBalance();
+        assertThat(new BigDecimal(250).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(maria.getBalance()));
 
-
-        assertThat(new BigDecimal(250).setScale(4, RoundingMode.HALF_DOWN), Matchers.comparesEqualTo(mariaBalance));
-
+        Assertions.assertEquals(20L, maria.getVibraniumOwned());
     }
 
     private void prepareTrade(BigDecimal askPrice, BigDecimal bidPrice) {
-        orderBookRepository.save(new OrderEntity(10, askPrice, OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, bidPrice, OrderTypeEnum.BID, "alice", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, askPrice, OrderTypeEnum.ASK.name(), "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, bidPrice, OrderTypeEnum.BID.name(), "alice", LocalDateTime.now()));
 
-        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "bob"));
-        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "alice"));
+        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "bob", 20L));
+        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "alice",0L));
     }
 
     private void prepareTradeWithQueue() {
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "alice", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "maria", LocalDateTime.now().minusDays(1)));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.ASK.name(), "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.BID.name(), "alice", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.BID.name(), "maria", LocalDateTime.now().minusDays(1)));
 
-        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "bob"));
-        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "alice"));
-        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "maria"));
+        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "bob", 20L));
+        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "alice", 0L));
+        walletRepository.save(new WalletEntity(new BigDecimal(500.0), "maria", 0L));
     }
 
     private void prepareTradeWithMoreThanOneAsksAndSingleBid() {
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "john", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "maria", LocalDateTime.now().minusDays(1)));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.ASK.name(), "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.ASK.name(), "john", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.BID.name(), "maria", LocalDateTime.now().minusDays(1)));
 
-        walletRepository.save(new WalletEntity(new BigDecimal(400.0), "bob"));
-        walletRepository.save(new WalletEntity(new BigDecimal(500.2), "john"));
-        walletRepository.save(new WalletEntity(new BigDecimal(600.0), "maria"));
+        walletRepository.save(new WalletEntity(new BigDecimal(400.0), "bob", 20L));
+        walletRepository.save(new WalletEntity(new BigDecimal(500.2), "john", 22L));
+        walletRepository.save(new WalletEntity(new BigDecimal(600.0), "maria", 10L));
     }
 
     private void prepareTradeWithMoreThanOneAsksAndBids() {
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "bob", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.ASK, "john", LocalDateTime.now()));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "maria", LocalDateTime.now().minusDays(1)));
-        orderBookRepository.save(new OrderEntity(10, new BigDecimal(35.0), OrderTypeEnum.BID, "alice", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.ASK.name(), "bob", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.ASK.name(), "john", LocalDateTime.now()));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.BID.name(), "maria", LocalDateTime.now().minusDays(1)));
+        orderBookRepository.save(new OrderEntity(10L, new BigDecimal(35.0), OrderTypeEnum.BID.name(), "alice", LocalDateTime.now()));
 
-        walletRepository.save(new WalletEntity(new BigDecimal(400.0), "bob"));
-        walletRepository.save(new WalletEntity(new BigDecimal(500.2), "john"));
-        walletRepository.save(new WalletEntity(new BigDecimal(600.0), "maria"));
-        walletRepository.save(new WalletEntity(new BigDecimal(600.0), "alice"));
+        walletRepository.save(new WalletEntity(new BigDecimal(400.0), "bob", 20L));
+        walletRepository.save(new WalletEntity(new BigDecimal(500.2), "john", 32L));
+        walletRepository.save(new WalletEntity(new BigDecimal(600.0), "maria", 1L));
+        walletRepository.save(new WalletEntity(new BigDecimal(600.0), "alice", 7L));
     }
 }

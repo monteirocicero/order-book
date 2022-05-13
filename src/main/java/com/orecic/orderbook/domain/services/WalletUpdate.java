@@ -1,18 +1,18 @@
 package com.orecic.orderbook.domain.services;
 
-import com.orecic.orderbook.domain.enums.OrderTypeEnum;
-
 import java.math.BigDecimal;
 
 public class WalletUpdate {
+    private Long qtyVibranium;
     private String user;
     private BigDecimal amount;
-    private OrderTypeEnum balanceType;
+    private String balanceType;
 
-    public WalletUpdate(String user, BigDecimal amount, OrderTypeEnum orderType) {
+    public WalletUpdate(String user, BigDecimal amount, String orderType, Long qtyVibranium) {
         this.user = user;
         this.amount = amount;
         this.balanceType = orderType;
+        this.qtyVibranium = qtyVibranium;
     }
 
     public String getUser() {
@@ -23,7 +23,11 @@ public class WalletUpdate {
         return this.amount;
     }
 
-    public OrderTypeEnum getBalanceType() {
+    public String getBalanceType() {
         return this.balanceType;
+    }
+
+    public Long getQtyVibranium() {
+        return qtyVibranium;
     }
 }

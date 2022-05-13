@@ -25,11 +25,11 @@ public class OrderScheduleImpl implements OrderSchedule {
     @Override
     public List<OrderEntity> process() {
 
-        List<OrderEntity> orders = orderBookRepository.findAllByStatusAndOrderTypeOrderByCreationDateAsc(OrderStatusEnum.OPEN, OrderTypeEnum.BID);
+        List<OrderEntity> orders = orderBookRepository.findAllByStatusAndOrderTypeOrderByCreationDateAsc(OrderStatusEnum.OPEN.name(), OrderTypeEnum.BID.name());
         for (OrderEntity bidOrder: orders) {
 
-            List<OrderEntity> matchesAskOrder = orderBookRepository.findAllByPriceAndOrderTypeAndQtyAndStatus(bidOrder.getPrice(), OrderTypeEnum.ASK, bidOrder.getQty(),
-                    OrderStatusEnum.OPEN);
+            List<OrderEntity> matchesAskOrder = orderBookRepository.findAllByPriceAndOrderTypeAndQtyAndStatus(bidOrder.getPrice(), OrderTypeEnum.ASK.name(), bidOrder.getQty(),
+                    OrderStatusEnum.OPEN.name());
 
             if (matchesAskOrder.isEmpty()) {
                 continue;

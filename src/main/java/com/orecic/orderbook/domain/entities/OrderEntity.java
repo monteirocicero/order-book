@@ -1,7 +1,6 @@
 package com.orecic.orderbook.domain.entities;
 
 import com.orecic.orderbook.domain.enums.OrderStatusEnum;
-import com.orecic.orderbook.domain.enums.OrderTypeEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,32 +9,29 @@ import java.time.LocalDateTime;
 @Entity
 public class OrderEntity implements Comparable<OrderEntity> {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int qty;
+    private Long qty;
     private BigDecimal price;
 
     @Column(name = "order_type")
-    @Enumerated(EnumType.ORDINAL)
-    private OrderTypeEnum orderType;
+    private String orderType;
 
     private String user;
 
-    @Enumerated(EnumType.ORDINAL)
-    private OrderStatusEnum status;
+    private String status;
 
     @Column(name = "created_at")
     private LocalDateTime creationDate;
 
-    public OrderEntity(int qty, BigDecimal price, OrderTypeEnum orderType, String user, LocalDateTime now) {
+    public OrderEntity(Long qty, BigDecimal price, String orderType, String user, LocalDateTime now) {
         this.qty = qty;
         this.price = price;
         this.orderType = orderType;
         this.user = user;
-        this.status = OrderStatusEnum.OPEN;
+        this.status = OrderStatusEnum.OPEN.name();
         this.creationDate = now;
     }
 
@@ -50,7 +46,7 @@ public class OrderEntity implements Comparable<OrderEntity> {
         this.id = id;
     }
 
-    public void setQty(int qty) {
+    public void setQty(Long qty) {
         this.qty = qty;
     }
 
@@ -66,7 +62,7 @@ public class OrderEntity implements Comparable<OrderEntity> {
         return id;
     }
 
-    public int getQty() {
+    public Long getQty() {
         return qty;
     }
 
@@ -81,19 +77,19 @@ public class OrderEntity implements Comparable<OrderEntity> {
     }
 
 
-    public OrderTypeEnum getOrderType() {
+    public String getOrderType() {
         return orderType;
     }
 
-    public void setOrderType(OrderTypeEnum orderType) {
+    public void setOrderType(String orderType) {
         this.orderType = orderType;
     }
 
-    public OrderStatusEnum getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(OrderStatusEnum status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
