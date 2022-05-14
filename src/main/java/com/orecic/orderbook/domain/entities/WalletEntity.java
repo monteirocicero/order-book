@@ -1,5 +1,7 @@
 package com.orecic.orderbook.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -13,9 +15,11 @@ public class WalletEntity {
 
     private BigDecimal balance;
 
+    @Column(name = "user_name")
     private String user;
 
     @Column(name = "qty_vibranium")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Long vibraniumOwned;
 
     public WalletEntity(BigDecimal balance, String user, Long vibraniumOwned) {
@@ -25,6 +29,12 @@ public class WalletEntity {
     }
 
     public WalletEntity() {}
+
+    public WalletEntity(String user, BigDecimal balance) {
+        this.user = user;
+        this.balance = balance;
+        this.vibraniumOwned = 0L;
+    }
 
     public Long getId() {
         return id;

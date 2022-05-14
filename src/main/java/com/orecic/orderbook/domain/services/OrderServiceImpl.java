@@ -1,13 +1,22 @@
 package com.orecic.orderbook.domain.services;
 
+import com.orecic.orderbook.application.controllers.OrderRestController;
+import com.orecic.orderbook.application.controllers.data.OrderRequest;
 import com.orecic.orderbook.domain.entities.OrderEntity;
 import com.orecic.orderbook.domain.enums.OrderStatusEnum;
 import com.orecic.orderbook.domain.repositories.OrderBookRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+
+    Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     private WalletService walletService;
@@ -17,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void update(OrderEntity bidOrder, OrderEntity askOrder) {
+        logger.info("m=update UPDATE_ORDER bidOrder={} askOrder={}", bidOrder, askOrder);
         walletService.update(new WalletUpdate(bidOrder.getUser(), bidOrder.getTotalOrder(), bidOrder.getOrderType(), bidOrder.getQty()));
         walletService.update(new WalletUpdate(askOrder.getUser(), askOrder.getTotalOrder(), askOrder.getOrderType(), askOrder.getQty()));
 
@@ -25,5 +35,12 @@ public class OrderServiceImpl implements OrderService {
 
         orderBookRepository.save(bidOrder);
         orderBookRepository.save(askOrder);
+    }
+
+    @Async
+    @Override
+    public void createAsync(OrderRequest orderRequest) {
+        logger.info("m=createAsync CREATE_ORDER_DOMAIN orderRequest={}", orderRequest);
+        orderBookRepository.save(new OrderEntity(orderRequest.quantity(), orderRequest.price(), orderRequest.orderType(), orderRequest.user(), LocalDateTime.now()));
     }
 }

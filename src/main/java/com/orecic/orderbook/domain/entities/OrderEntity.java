@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "orders")
 public class OrderEntity implements Comparable<OrderEntity> {
 
     @Id
@@ -19,6 +20,7 @@ public class OrderEntity implements Comparable<OrderEntity> {
     @Column(name = "order_type")
     private String orderType;
 
+    @Column(name = "user_name")
     private String user;
 
     private String status;

@@ -6,4 +6,6 @@ public interface WalletService {
     void update(WalletUpdate walletUpdate);
 
     void insert(WalletRequest walletRequest);
+
+    WalletResponse getWallet(WalletRequest walletRequest);
 }

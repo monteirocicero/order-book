@@ -7,5 +7,5 @@ public interface OrderService {
 
     void update(OrderEntity bidOrder, OrderEntity askOrder);
 
-    void create(OrderRequest orderRequest);
+    void createAsync(OrderRequest orderRequest);
 }
