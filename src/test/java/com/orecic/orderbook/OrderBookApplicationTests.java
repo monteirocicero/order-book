@@ -8,18 +8,21 @@ import com.orecic.orderbook.domain.repositories.WalletRepository;
 import com.orecic.orderbook.domain.services.OrderSchedule;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+
+
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -32,6 +35,12 @@ class OrderBookApplicationTests {
     private WalletRepository walletRepository;
     @Autowired
     private OrderSchedule orderBookSchedule;
+
+    @BeforeEach
+    void resetDatabase() {
+        orderBookRepository.deleteAll();
+        walletRepository.deleteAll();
+    }
 
     @Test
     void testMakeASimpleTrade() {

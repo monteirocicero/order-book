@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,6 @@ import java.util.Optional;
 public class OrderScheduleImpl implements OrderSchedule {
 
     Logger logger = LoggerFactory.getLogger(OrderScheduleImpl.class);
-
 
     @Autowired
     private OrderBookRepository orderBookRepository;
@@ -28,6 +28,7 @@ public class OrderScheduleImpl implements OrderSchedule {
     private List<OrderEntity> executedOrders = new ArrayList<>();
 
     @Override
+    @Transactional
     public List<OrderEntity> process() {
         logger.info("m=process INITIALIZING");
 

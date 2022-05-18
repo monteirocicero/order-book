@@ -1,6 +1,5 @@
 package com.orecic.orderbook.domain.services;
 
-import com.orecic.orderbook.application.controllers.OrderRestController;
 import com.orecic.orderbook.application.controllers.data.OrderRequest;
 import com.orecic.orderbook.domain.entities.OrderEntity;
 import com.orecic.orderbook.domain.enums.OrderStatusEnum;
