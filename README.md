@@ -30,7 +30,11 @@ Em um **order book(livro de ofertas)**, há muitas regras envolvidas no seu func
 
 ## Arquitetura
 
-[Order Book - view](docs/order-book-view.md)
+[Order Book - Context Diagram](docs/order-book-context-diagram.md)
+
+![](docs/images/order-book-context%20diagram15.png)
+
+[Order Book - View](docs/order-book-view.md)
 
 ![](docs/images/architecture_15.png)
 
@@ -51,4 +55,7 @@ Contém o racional para escolha da arquitetura e componentes pertinentes.
 
 
 ## Como executar local
-[Instruções para execução](https://github.com/monteirocicero/order-book/blob/main/docs/how-to-run-the-application.md)
+[Instruções para execução](docs/how-to-run-the-application.md)
+
+## Load testing
+[Resultados](docs/load-testing.md)
