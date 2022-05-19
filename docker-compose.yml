@@ -1,22 +1,21 @@
-version: '2'
-
+version: "3.7"
 services:
-  app:
-    image: 'docker-spring-boot-postgres:latest'
-    build:
-      context: .
-    container_name: app
+  api_service:
+    image: order-book:latest
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
     depends_on:
-      - db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/orderbook
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=metabase
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-
-  db:
+      - postgres_db
+  postgres_db:
     image: 'postgres:13.1-alpine'
     container_name: db
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=metabase
+      - POSTGRES_DB=orderbook
+    volumes:
+      -

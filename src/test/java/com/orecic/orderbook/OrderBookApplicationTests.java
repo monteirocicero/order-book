@@ -12,8 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -22,10 +23,10 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
-
-@SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@SpringBootTest
+@ActiveProfiles("test")
+@TestPropertySource(locations = "classpath:application-test.properties")
 class OrderBookApplicationTests {
 
     @Autowired
