@@ -47,17 +47,14 @@ O design do código tentou seguir uma clean architecture, desacoplando as camada
 ## ADR (Architectural Decision Record)
 Contém o racional para escolha da arquitetura e componentes pertinentes.
 
-* ADR 001 - [Monolith Style](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
-* ADR 002 - [Batch Matching](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
-* ADR 003 - [Leader/Follower Database](https://github.com/monteirocicero/order-book/blob/main/ADRs/ADR001-monolith-architecture.md)
-
-
+* ADR 001 - [Database as a Queue](ADRs/ADR001-database-as-queue.md)
+* ADR 002 - [SQL Database](ADRs/ADR001-database-as-queue.md)
 ## Backlog
 * Permitir ordem de compra a preço de mercado(imediata), compra com proteção e compra com stop/loss.
 * Disponibilizar execução de ordens parcias.
 * Permitir aluguel de vibranium.
 * Possibilitar negociar opções de vibranium.
-
+* Remover banco de dados como fila e provisionar um broker
 
 ## Como executar local
 [Instruções para execução](docs/how-to-run-the-application.md)
