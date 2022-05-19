@@ -9,5 +9,12 @@ Comando usado para o teste:
 K6 integrado com influxdb e grafana para visualização dos dados.
 
 
+![](images/load-testing-containers.png)
+
+> Rodando em containers local
+
+
+
+
 
 

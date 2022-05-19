@@ -20,7 +20,7 @@ public class CreateOrderAsyncConfigurer implements AsyncConfigurer {
     @Override
     public Executor getAsyncExecutor() {
         logger.info("m=getAsyncExecutor USING_CUSTOM_EXECUTOR");
-        return Executors.newFixedThreadPool(100);
+        return Executors.newFixedThreadPool(200);
     }
 
     @Override

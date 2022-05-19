@@ -39,6 +39,11 @@ Em um **order book(livro de ofertas)**, há muitas regras envolvidas no seu func
 ![](docs/images/architecture_15.png)
 
 
+O design do código tentou seguir uma clean architecture, desacoplando as camadas e isolando o domain.
+
+![](docs/images/design-view.png)
+
+
 ## ADR (Architectural Decision Record)
 Contém o racional para escolha da arquitetura e componentes pertinentes.
 
@@ -51,7 +56,7 @@ Contém o racional para escolha da arquitetura e componentes pertinentes.
 * Permitir ordem de compra a preço de mercado(imediata), compra com proteção e compra com stop/loss.
 * Disponibilizar execução de ordens parcias.
 * Permitir aluguel de vibranium.
-* Possibilitar negociar opções de vibranium.Service
+* Possibilitar negociar opções de vibranium.
 
 
 ## Como executar local
