@@ -32,6 +32,8 @@ public class OrderScheduleImpl implements OrderSchedule {
     public List<OrderEntity> process() {
         logger.info("m=process INITIALIZING");
 
+        // FIXME: Devemos retornar os resultados paginados para não carrregar muitos dados na mémoria e filtro pela data
+        //  menor que o tempo atual para ir 'enfileirando' as novas ordens
         List<OrderEntity> orders = orderBookRepository.findAllByStatusAndOrderTypeOrderByCreationDateAsc(OrderStatusEnum.OPEN.name(), OrderTypeEnum.BID.name());
         for (OrderEntity bidOrder: orders) {
 
