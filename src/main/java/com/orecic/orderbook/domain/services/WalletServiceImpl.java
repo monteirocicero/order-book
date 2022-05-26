@@ -1,6 +1,8 @@
 package com.orecic.orderbook.domain.services;
 
 import com.orecic.orderbook.application.controllers.data.WalletRequest;
+import com.orecic.orderbook.domain.data.WalletResponse;
+import com.orecic.orderbook.domain.data.WalletUpdate;
 import com.orecic.orderbook.domain.entities.WalletEntity;
 import com.orecic.orderbook.domain.enums.OrderTypeEnum;
 import com.orecic.orderbook.domain.repositories.WalletRepository;

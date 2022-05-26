@@ -1,4 +1,4 @@
-package com.orecic.orderbook.domain.services;
+package com.orecic.orderbook.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

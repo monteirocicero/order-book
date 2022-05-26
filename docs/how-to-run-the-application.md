@@ -12,7 +12,7 @@ Pré-requisitos instalados:
 ## order
 
 ### Criar uma ordem de compra ou venda.
-`POST book-order/order`
+`POST book-order/orders`
 
 Request:
 ```json
@@ -24,20 +24,19 @@ Request:
 }
 ```
 
-price: preco de compra ou venda.
+| Campo     |                  Descricão                   |
+|-----------|:--------------------------------------------:|
+| price     |           preco de compra ou venda           |
+| quantity  |       quantidade para compra ou venda        |
+| orderType |  `BID` ordem de compra, `ASK`ordem de venda  |
+| user      | usuário da ordem de compra ou venda          |
 
-quantity: quantidade para compra ou venda.
-
-orderType: `BID` ordem de compra, `ASK`ordem de venda.
-
-user: usuário da ordem de compra ou venda.
-
-Response: `200 OK`
+Response: `HTTP 200 OK`
 
 Exemplo:
 
 ```shell
-curl --location --request POST 'http://localhost:8080/order-book/order' \
+curl --location --request POST 'http://localhost:8080/order-book/orders' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "price": 35.00,
@@ -50,7 +49,7 @@ curl --location --request POST 'http://localhost:8080/order-book/order' \
 ## wallet
 ### Adiciona dinheiro na carteira do usuário.
 
-`POST order-book/wallet`
+`POST order-book/wallets`
 
 Request:
 ```json
@@ -59,13 +58,17 @@ Request:
     "balance": 500.00
 }
 ```
-user: usuário da carteira.
 
-balance: valor a ser inserido.
+| Campo    |      Descricão       |
+|----------|:--------------------:|
+| user     | usuário da carteira  |
+| balance  | valor a ser inserido |
+
+Response: `HTTP 200 OK`
 
 Exemplo:
 ```shell
-curl --location --request POST 'http://localhost:8080/order-book/wallet' \
+curl --location --request POST 'http://localhost:8080/order-book/wallets' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "user": "alice",
@@ -75,8 +78,9 @@ curl --location --request POST 'http://localhost:8080/order-book/wallet' \
 
 
 ### Consulta saldos da carteira.
-`GET order-book/wallet/user`
+`GET order-book/wallets/user`
 
+Response:
 ```json
 {
     "user": "alice",
@@ -85,14 +89,15 @@ curl --location --request POST 'http://localhost:8080/order-book/wallet' \
 }
 ```
 
-user: Usuário da carteira.
 
-balance: Saldo em dinheiro da carteira.
-
-vibranium: mostra quantidade de vibranium do usuário.
+| Campo     |                 Descricão                 |
+|-----------|:-----------------------------------------:|
+| user      |            Usuário da carteira            |
+| balance   |       Saldo em dinheiro da carteira       |
+| vibranium | mostra quantidade de vibranium do usuário |
 
 Exemplo:
 ```shell
-curl --location --request GET 'http://localhost:8080/order-book/wallet/alice'
+curl --location --request GET 'http://localhost:8080/order-book/wallets/alice'
 ```
 
