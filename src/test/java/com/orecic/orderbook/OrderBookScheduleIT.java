@@ -27,7 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @SpringBootTest
 @ActiveProfiles("test")
 @TestPropertySource(locations = "classpath:application-test.properties")
-class OrderBookApplicationTests {
+class OrderBookScheduleIT {
 
     @Autowired
     private OrderBookRepository orderBookRepository;

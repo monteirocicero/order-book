@@ -1,6 +1,9 @@
 package com.orecic.orderbook.domain.entities;
 
 import com.orecic.orderbook.domain.enums.OrderStatusEnum;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -8,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
+@Getter @Setter @NoArgsConstructor
 public class OrderEntity implements Comparable<OrderEntity> {
 
     @Id
@@ -40,67 +44,6 @@ public class OrderEntity implements Comparable<OrderEntity> {
     @Transient
     public BigDecimal getTotalOrder() {
         return BigDecimal.valueOf(getQty()).multiply(getPrice());
-    }
-
-    public OrderEntity(){}
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setQty(Long qty) {
-        this.qty = qty;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getQty() {
-        return qty;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-
-
-    public String getUser() {
-        return user;
-    }
-
-
-    public String getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(String orderType) {
-        this.orderType = orderType;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     @Override

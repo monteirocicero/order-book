@@ -1,12 +1,16 @@
 package com.orecic.orderbook.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "wallet")
+@Getter @Setter @NoArgsConstructor
 public class WalletEntity {
 
     @Id
@@ -28,43 +32,9 @@ public class WalletEntity {
         this.vibraniumOwned = vibraniumOwned;
     }
 
-    public WalletEntity() {}
-
     public WalletEntity(String user, BigDecimal balance) {
         this.user = user;
         this.balance = balance;
         this.vibraniumOwned = 0L;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public Long getVibraniumOwned() {
-        return vibraniumOwned;
-    }
-
-    public void setVibraniumOwned(Long vibraniumOwned) {
-        this.vibraniumOwned = vibraniumOwned;
     }
 }

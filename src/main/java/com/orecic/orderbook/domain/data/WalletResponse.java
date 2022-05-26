@@ -1,14 +1,18 @@
 package com.orecic.orderbook.domain.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+@Getter
+@NoArgsConstructor
 public class WalletResponse {
-    private final String user;
-    private final BigDecimal balance;
+    private String user;
+    private BigDecimal balance;
     @JsonProperty("vibranium")
-    private final Long vibraniumOwned;
+    private Long vibraniumOwned;
 
     public WalletResponse(String user, BigDecimal balance, Long vibraniumOwned) {
         this.user = user;
@@ -16,15 +20,4 @@ public class WalletResponse {
         this.vibraniumOwned = vibraniumOwned;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public Long getVibraniumOwned() {
-        return vibraniumOwned;
-    }
 }

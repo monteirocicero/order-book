@@ -1,7 +1,12 @@
 package com.orecic.orderbook.domain.data;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 
+@Getter
+@NoArgsConstructor
 public class WalletUpdate {
     private Long qtyVibranium;
     private String user;
