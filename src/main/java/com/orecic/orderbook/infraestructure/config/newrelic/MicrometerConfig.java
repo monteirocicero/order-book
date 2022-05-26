@@ -39,7 +39,7 @@ public class MicrometerConfig {
 
             @Override
             public String apiKey() {
-                return "ace9dc20520a1099ed7647fee6d0de48a72dNRAL";
+                return System.getenv("NR_INSERT_API_KEY");
             }
 
             @Override
