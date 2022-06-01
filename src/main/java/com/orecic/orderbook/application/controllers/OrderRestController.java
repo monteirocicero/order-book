@@ -22,7 +22,7 @@ public class OrderRestController {
     @PostMapping
     public ResponseEntity createOrder(@RequestBody OrderRequest orderRequest) {
         logger.info("m=createOrder CREATE_ORDER orderRequest={}", orderRequest);
-        orderService.createAsync(orderRequest);
+        orderService.enqueue(orderRequest);
         return ResponseEntity.ok().build();
     }
 

@@ -23,11 +23,13 @@ dependencies {
 	implementation 'org.postgresql:postgresql:42.3.4'
 	annotationProcessor 'org.projectlombok:lombok:1.18.24'
 	implementation 'com.newrelic.telemetry:micrometer-registry-new-relic:0.8.0'
+	implementation group: 'org.springframework.amqp', name: 'spring-rabbit', version: '2.4.5'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.0'
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+	implementation group: 'com.newrelic.telemetry', name: 'telemetry-core', version: '0.13.2'
 }
 
 tasks.named('test') {

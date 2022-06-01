@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     depends_on:
       - postgres_db
+      - rabbitmq_mq
   postgres_db:
     image: 'postgres:13.1-alpine'
     container_name: orderbook-db
@@ -18,3 +19,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=metabase
       - POSTGRES_DB=orderbook
+  rabbitmq_mq:
+    image: rabbitmq:management
+    container_name: orderbook-mq
+    ports:
+      - "5672:5672"
+      - "15672:15672"

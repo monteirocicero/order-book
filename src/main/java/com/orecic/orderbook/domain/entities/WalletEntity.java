@@ -32,9 +32,4 @@ public class WalletEntity {
         this.vibraniumOwned = vibraniumOwned;
     }
 
-    public WalletEntity(String user, BigDecimal balance) {
-        this.user = user;
-        this.balance = balance;
-        this.vibraniumOwned = 0L;
-    }
 }

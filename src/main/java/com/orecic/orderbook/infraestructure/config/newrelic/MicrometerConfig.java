@@ -6,7 +6,6 @@ import com.newrelic.telemetry.micrometer.NewRelicRegistry;
 import com.newrelic.telemetry.micrometer.NewRelicRegistryConfig;
 import io.micrometer.core.instrument.config.MeterFilter;
 import io.micrometer.core.instrument.util.NamedThreadFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.metrics.CompositeMeterRegistryAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleMetricsExportAutoConfiguration;
@@ -39,7 +38,7 @@ public class MicrometerConfig {
 
             @Override
             public String apiKey() {
-                return System.getenv("NR_INSERT_API_KEY");
+                return "ace9dc20520a1099ed7647fee6d0de48a72dNRAL";
             }
 
             @Override

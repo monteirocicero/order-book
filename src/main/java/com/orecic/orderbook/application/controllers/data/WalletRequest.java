@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 public class WalletRequest {
     private String user;
     private BigDecimal balance;
+    private Long vibranium;
 
     public WalletRequest(String user) {
         this.user = user;

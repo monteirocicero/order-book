@@ -20,19 +20,4 @@ public class WalletUpdate {
         this.qtyVibranium = qtyVibranium;
     }
 
-    public String getUser() {
-        return this.user;
-    }
-
-    public BigDecimal getAmount() {
-        return this.amount;
-    }
-
-    public String getBalanceType() {
-        return this.balanceType;
-    }
-
-    public Long getQtyVibranium() {
-        return qtyVibranium;
-    }
 }

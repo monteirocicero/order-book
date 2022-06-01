@@ -1,7 +1,7 @@
 import http from 'k6/http';
 
 export default function () {
-  const url = 'http://localhost:8080/order-book/order';
+  const url = 'http://localhost:8080/order-book/orders';
 
     var min = 34.00,
         max = 35.00,

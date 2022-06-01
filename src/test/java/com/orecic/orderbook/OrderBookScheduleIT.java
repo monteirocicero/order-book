@@ -1,15 +1,19 @@
 package com.orecic.orderbook;
 
+import com.orecic.orderbook.application.controllers.data.OrderRequest;
 import com.orecic.orderbook.domain.entities.OrderEntity;
 import com.orecic.orderbook.domain.entities.WalletEntity;
 import com.orecic.orderbook.domain.enums.OrderTypeEnum;
 import com.orecic.orderbook.domain.repositories.OrderBookRepository;
 import com.orecic.orderbook.domain.repositories.WalletRepository;
 import com.orecic.orderbook.domain.services.OrderSchedule;
+import com.orecic.orderbook.domain.services.ReceiverService;
+import com.orecic.orderbook.infraestructure.config.rabbitmq.RabbitMQConfig;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -36,6 +40,9 @@ class OrderBookScheduleIT {
     private WalletRepository walletRepository;
     @Autowired
     private OrderSchedule orderBookSchedule;
+
+    @Autowired private RabbitTemplate rabbitTemplate;
+    @Autowired private ReceiverService receiver;
 
     @BeforeEach
     void resetDatabase() {
@@ -213,5 +220,14 @@ class OrderBookScheduleIT {
         walletRepository.save(new WalletEntity(new BigDecimal(500.2), "john", 32L));
         walletRepository.save(new WalletEntity(new BigDecimal(600.0), "maria", 1L));
         walletRepository.save(new WalletEntity(new BigDecimal(600.0), "alice", 7L));
+    }
+
+    @Test
+    public void testRabbit() {
+        System.out.println("Sending message...");
+
+        OrderRequest orderRequest = new OrderRequest(new BigDecimal(35.00), 10L, "mary", OrderTypeEnum.BID.name());
+
+        rabbitTemplate.convertAndSend(RabbitMQConfig.topicExchangeName, "order.book.baz", orderRequest);
     }
 }

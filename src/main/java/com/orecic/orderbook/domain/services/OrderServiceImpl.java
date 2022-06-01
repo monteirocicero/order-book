@@ -5,8 +5,10 @@ import com.orecic.orderbook.domain.data.WalletUpdate;
 import com.orecic.orderbook.domain.entities.OrderEntity;
 import com.orecic.orderbook.domain.enums.OrderStatusEnum;
 import com.orecic.orderbook.domain.repositories.OrderBookRepository;
+import com.orecic.orderbook.infraestructure.config.rabbitmq.RabbitMQConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderBookRepository orderBookRepository;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Override
     public void update(OrderEntity bidOrder, OrderEntity askOrder) {
@@ -42,5 +47,11 @@ public class OrderServiceImpl implements OrderService {
     public void createAsync(OrderRequest orderRequest) {
         logger.info("m=createAsync CREATE_ORDER_DOMAIN orderRequest={}", orderRequest);
         orderBookRepository.save(new OrderEntity(orderRequest.quantity(), orderRequest.price(), orderRequest.orderType(), orderRequest.user(), LocalDateTime.now()));
+    }
+
+    @Override
+    public void enqueue(OrderRequest orderRequest) {
+        logger.info("m=enqueue ENQUEUE_ORDER orderRequest={}", orderRequest);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.topicExchangeName, "order.book.baz", orderRequest);
     }
 }

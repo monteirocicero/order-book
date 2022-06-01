@@ -37,7 +37,7 @@ public class WalletServiceImpl implements WalletService {
     public void insert(WalletRequest walletRequest) {
         logger.info("m=insert CREATE user={}", walletRequest.getUser());
 
-        walletRepository.save(new WalletEntity(walletRequest.getUser(), walletRequest.getBalance()));
+        walletRepository.save(new WalletEntity(walletRequest.getBalance(), walletRequest.getUser(), walletRequest.getVibranium()));
     }
 
     @Override

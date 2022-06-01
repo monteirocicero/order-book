@@ -8,4 +8,6 @@ public interface OrderService {
     void update(OrderEntity bidOrder, OrderEntity askOrder);
 
     void createAsync(OrderRequest orderRequest);
+
+    void enqueue(OrderRequest orderRequest);
 }
